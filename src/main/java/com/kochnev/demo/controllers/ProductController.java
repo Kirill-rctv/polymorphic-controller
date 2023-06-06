@@ -48,9 +48,7 @@ public class ProductController {
         Optional<Product> productData = productService.findById(id);
 
         try {
-            if (productData.isPresent() &&
-                    (productData.get().getId() == product.getId() &&
-                            productData.get().getClass().equals(product.getClass()))) {
+            if (productData.isPresent() && productData.get().getClass().equals(product.getClass())) {
                 return new ResponseEntity<>(productService.update(product), HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
